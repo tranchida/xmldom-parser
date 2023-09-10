@@ -51,7 +51,11 @@ func Parse(r io.Reader) (*Document, error) {
 			for _, attr := range token.Attr {
 				name := attr.Name.Local
 				if attr.Name.Space != "" {
-					name = fmt.Sprintf("%s:%s", attr.Name.Space, attr.Name.Local)
+					if strings.Contains(attr.Name.Space, "xlink") {
+						name = fmt.Sprintf("%s:%s", "xlink", attr.Name.Local)
+					} else {
+						name = fmt.Sprintf("%s:%s", attr.Name.Space, attr.Name.Local)
+					}
 				}
 				el.Attributes = append(el.Attributes, &Attribute{
 					Name:  name,
