@@ -1,8 +1,56 @@
 package xmldom
 
 import (
+	"strings"
 	"testing"
 )
+
+func TestParse(t *testing.T) {
+	testCases := []struct {
+		inputXML     string
+		expectedAttr map[string]string
+	}{
+		{
+			inputXML: `<root xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://github.com/subchen/go-xmldom"></root>`,
+			expectedAttr: map[string]string{
+				"xmlns:xlink": "http://www.w3.org/1999/xlink",
+				"xlink:href":  "https://github.com/subchen/go-xmldom",
+			},
+		},
+		{
+			inputXML: `<root xml:lang="en" xsi:type="string" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"></root>`,
+			expectedAttr: map[string]string{
+				"xml:lang":  "en",
+				"xsi:type":  "string",
+				"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+			},
+		},
+	}
+
+	for _, testCase := range testCases {
+		r := strings.NewReader(testCase.inputXML)
+		doc, err := Parse(r)
+		if err != nil {
+			t.Fatalf("Unexpected error: %v", err)
+		}
+
+		root := doc.Root
+		attributes := root.Attributes
+
+		attrMap := make(map[string]string)
+		for _, attr := range attributes {
+			attrMap[attr.Name] = attr.Value
+		}
+
+		for expectedName, expectedValue := range testCase.expectedAttr {
+			if value, exists := attrMap[expectedName]; !exists {
+				t.Errorf("Attribute %s was expected but not found", expectedName)
+			} else if value != expectedValue {
+				t.Errorf("Attribute %s has unexpected value. Got: %s, Want: %s", expectedName, value, expectedValue)
+			}
+		}
+	}
+}
 
 func TestSvgParse(t *testing.T) {
 	doc, err := ParseFile("test.svg")
