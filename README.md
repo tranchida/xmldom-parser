@@ -18,13 +18,13 @@ XML DOM processing for Golang, supports xpath query
 ## Installation
 
 ```bash
-$ go get github.com/Rodion-Bozhenko/xmldom-parser
+$ go get github.com/tranchida/xmldom-parser
 ```
 
 ## Basic Usage
 
 ```go
-xml := `<testsuite tests="2" failures="0" time="0.009" name="github.com/Rodion-Bozhenko/xmldom-parser">
+xml := `<testsuite tests="2" failures="0" time="0.009" name="github.com/tranchida/xmldom-parser">
     <testcase classname="xmldom-parser" name="ExampleParseXML" time="0.004"></testcase>
     <testcase classname="xmldom-parser" name="ExampleParse" time="0.005"></testcase>
 </testsuite>`
@@ -65,7 +65,7 @@ fmt.Printf("%v: name = %v\n", c.Name, c.GetAttributeValue("name"))
 ```go
 doc := xmldom.NewDocument("testsuites")
 
-suiteNode := doc.Root.CreateNode("testsuite").SetAttributeValue("name", "github.com/Rodion-Bozhenko/xmldom-parser")
+suiteNode := doc.Root.CreateNode("testsuite").SetAttributeValue("name", "github.com/tranchida/xmldom-parser")
 suiteNode.CreateNode("testcase").SetAttributeValue("name", "case 1")
 suiteNode.CreateNode("testcase").SetAttributeValue("name", "case 2")
 
@@ -74,4 +74,4 @@ fmt.Println(doc.XML())
 
 ## License
 
-`xmldom-parser` is released under the Apache 2.0 license. See [LICENSE](https://github.com/Rodion-Bozhenko/xmldom-parser/blob/master/LICENSE)
+`xmldom-parser` is released under the Apache 2.0 license. See [LICENSE](https://github.com/tranchida/xmldom-parser/blob/master/LICENSE)
