@@ -1,4 +1,4 @@
-module github.com/Rodion-Bozhenko/xmldom-parser
+module github.com/tranchida/xmldom-parser
 
 go 1.21.1
 
