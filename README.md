@@ -1,13 +1,12 @@
 # xmldom-parser
 
-It is a fork from subchen/go-xmldom.
+forked from Rodion-Bozhenko/xmldom-parser
 
 ## Motivation for fork
 
-Since the original repo seems to be inactive, this repo is made to add the updates needed for my needs.
-Many thanks for subchen's work!
+add AppendChildBefore
 
-[Original Repo](https://github.com/subchen/go-xmldom)
+[Original Repo](https://github.com/Rodion-Bozhenko/xmldom-parser)
 
 XML DOM processing for Golang, supports xpath query
 
