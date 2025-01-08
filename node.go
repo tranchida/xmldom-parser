@@ -133,6 +133,17 @@ func (n *Node) AppendChild(c *Node) *Node {
 	return n
 }
 
+func (n *Node) AppendChildBefore(c, before *Node) *Node {
+	for i, a := range n.Children {
+		if a == before {
+			n.Children = append(n.Children[:i], append([]*Node{c}, n.Children[i:]...)...)
+			break
+		}
+	}
+	return n
+}
+
+
 func (n *Node) RemoveChild(c *Node) *Node {
 	for i, a := range n.Children {
 		if a == c {
