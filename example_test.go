@@ -3,7 +3,7 @@ package xmldom_test
 import (
 	"fmt"
 
-	"github.com/Rodion-Bozhenko/xmldom-parser"
+	"github.com/tranchida/xmldom-parser"
 )
 
 const (
